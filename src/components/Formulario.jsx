@@ -93,6 +93,30 @@ const Formulario = () => {
         }
     }
 
+    const editar = item =>{
+        setNombre(item.nombrePersona)
+        setApellido(item.apellidoPersona)
+        setCelular(item.celularPersona)
+        setEmail(item.emailPersona)
+        setCargo(item.cargoPersona)
+        setDespacho(item.despachoPersona)
+        setSolicitud(item.solicitudPersona)
+        setId(item.id)
+        setModoEdicion(true)
+    }
+
+    const cancelar = () =>{
+        setModoEdicion(false)
+        setNombre('')
+        setApellido('')
+        setCelular('')
+        setEmail('')
+        setCargo('')
+        setDespacho('')
+        setSolicitud('')
+        setId('')
+    }
+
   return (
     <div className='container mt-5'>
         <h1 className='text-center'>CRUD WEB 2</h1>
