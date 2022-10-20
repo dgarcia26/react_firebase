@@ -101,6 +101,24 @@ const Formulario = () => {
             <div className="col-8">
                 <h4 className="text-center">Listado de Frutas</h4>
                 <ul className="list-group">
+                {
+                     listaTiquet.map(item => (
+                         <li className="list-group-item" key={item.id}>
+                            
+                            <img className='imgUrl' src={item.imageUrl} alt="" />   
+                            <span className="lead">{item.nombrePersona}-{item.apellidoPersona}</span>
+                            <span className="lead">{item.celularPersona}-{item.emailPersona}</span>
+                            <span className="lead">{item.cargoPersona}-{item.despachoPersona}-{item.solicitudPersona}</span>
+                                                          
+                             <button 
+                             className="btn btn-danger btn-sm float-end mx-2"
+                             onClick={()=>eliminar(item.id)}>Eliminar</button>
+                             <button className="btn btn-warning btn-sm float-end"
+                             onClick={()=>editar(item)}
+                             >Editar</button>
+                         </li>
+                     ))        
+                }
                 
             </ul>
             </div>
