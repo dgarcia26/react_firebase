@@ -123,6 +123,72 @@ const Formulario = () => {
             </ul>
             </div>
 
+            <div className="col-4">
+            <h4 className="text-center">
+                {
+                    modoEdicion ? 'Editar Tiquet' : 'Agregar Tiquet'
+                }
+            </h4>
+            <form onSubmit={modoEdicion ? editarTiquet : guardarTiquet}>
+                <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Nombre'
+                value={nombre}
+                onChange={(e)=>setNombre(e.target.value)}/>
+                 <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Apellido'
+                value={apellido}
+                onChange={(e)=>setApellido(e.target.value)}/>
+                
+                <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Celular'
+                value={celular}
+                onChange={(e)=>setCelular(e.target.value)}/>
+                <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Email'
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}/>
+                <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Cargo'
+                value={cargo}
+                onChange={(e)=>setCargo(e.target.value)}/>
+                <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Despacho'
+                value={despacho}
+                onChange={(e)=>setDespacho(e.target.value)}/>
+                <input type="text" 
+                className="form-control mb-2" 
+                placeholder='Ingrese Solicitud'
+                value={solicitud}
+                onChange={(e)=>setSolicitud(e.target.value)}/>
+                {
+                    modoEdicion ?
+                    (
+                        <>
+                            <button
+                            className='btn btn-warning btn-block'
+                            on='submit'>Editar</button>
+                            <button
+                            className='btn btn-dark btn-block mx-2'
+                            onClick={()=>cancelar()}>Cancelar</button>
+                        </>
+                    )
+                    :
+                    
+                    <button 
+                    type='submit'
+                    className='btn btn-primary btn-block'>
+                    Agregar
+                    </button>
+                }
+            </form>
+        </div> 
+
                 
 
                 
