@@ -15,6 +15,24 @@ const Formulario = () => {
     const [modoEdicion, setModoEdicion] = useState(false)
     const [id, setId] = useState('')
 
+    
+    const eliminar = async id =>{
+        try{
+            await deleteDoc(doc(db, 'Tiquet', id))
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const obtenerImagen = async() => {
+        try{
+           const res =  await fetch(`https://picsum.photos/200`)
+           return res.url;
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     const guardarTiquet = async (e) => {
         e.preventDefault()
 
