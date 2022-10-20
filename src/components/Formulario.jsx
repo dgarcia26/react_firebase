@@ -15,7 +15,19 @@ const Formulario = () => {
     const [modoEdicion, setModoEdicion] = useState(false)
     const [id, setId] = useState('')
 
-    
+    useEffect(()=>{
+        const obtenerDatos = async () => {
+            try{
+                await onSnapshot(collection(db, "Tiquet"), (query)=>{
+                    setlistaTiquet(query.docs.map((doc)=>({...doc.data(), id:doc.id})))
+                })
+            }catch(error){
+                console.log(error)
+            }
+        }
+        obtenerDatos();
+    }, [])
+
     const eliminar = async id =>{
         try{
             await deleteDoc(doc(db, 'Tiquet', id))
