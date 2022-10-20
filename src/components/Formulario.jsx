@@ -49,7 +49,49 @@ const Formulario = () => {
         }catch(error){
             console.log(error)
         }
-    } 
+    }
+
+    const editarTiquet = async (e) => {
+        e.preventDefault()
+        try{
+            const imageUrl2 = await obtenerImagen();
+            const docRef = doc(db, 'Tiquet', id);
+            await updateDoc(docRef, {
+                
+                nombrePersona:nombre,
+                apellidoPersona: apellido,
+                celularPersona: celular,
+                emailPersona: email,
+                cargoPersona: cargo,
+                despachoPersona: despacho,
+                solicitudPersona: solicitud,
+                imageUrl2
+                
+            })
+            
+
+            const nuevoArray = listaTiquet.map(
+                item => item.id === id ? {id: id, nombrePersona:nombre, apellidoPersona: apellido, celularPersona: celular, emailPersona: email, cargoPersona: cargo, despachoPersona: despacho,
+                    solicitudPersona: solicitud, imageUrl2
+                //mas iten
+                } : item
+            )
+            
+            setlistaTiquet(nuevoArray)
+            setNombre('')
+            setApellido('')
+            setCelular('')
+            setEmail('')
+            setCargo('')
+            setDespacho('')
+            setSolicitud('')
+            setId('')
+            setModoEdicion(false)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
 
   return (
     <div className='container mt-5'>
