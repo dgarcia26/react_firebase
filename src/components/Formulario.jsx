@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
-//import {db} from '../firebase';
-//import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore';
+import React, {useState, useEffect} from 'react'
+import {db} from '../firebase';
+import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 
 const Formulario = () => {
-
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
     const [celular, setCelular] = useState('')
@@ -11,10 +10,12 @@ const Formulario = () => {
     const [cargo, setCargo] = useState('')
     const [despacho, setDespacho] = useState('')
     const [solicitud, setSolicitud] = useState('')
-    const [listaFrutas, setListaFrutas] = useState([])
+    const [listaTiquet, setlistaTiquet] = useState([])
     const [modoEdicion, setModoEdicion] = useState(false)
     const [id, setId] = useState('')
-
+    
+    
+    
     useEffect(()=>{
         const obtenerDatos = async () => {
             try{
@@ -147,22 +148,37 @@ const Formulario = () => {
         setId('')
     }
 
+    
+
+
   return (
     <div className='container mt-5'>
-        <h1 className='text-center'>CRUD WEB 2</h1>
+        <h1 className='text-center'>SOPORTE TECNICO</h1>
         <hr/>
         <div className="row">
             <div className="col-8">
-                <h4 className="text-center">Listado de Frutas</h4>
+                <h2 className="text-center">MESA DE AYUDA</h2>
+                <h4 className="text-center">Solicitud de Tiquet</h4>
                 <ul className="list-group">
                 {
                      listaTiquet.map(item => (
-                         <li className="list-group-item" key={item.id}>
+                         <li className="list-group-item card" key={item.id}>
                             
-                            <img className='imgUrl' src={item.imageUrl} alt="" />   
-                            <span className="lead">{item.nombrePersona}-{item.apellidoPersona}</span>
-                            <span className="lead">{item.celularPersona}-{item.emailPersona}</span>
-                            <span className="lead">{item.cargoPersona}-{item.despachoPersona}-{item.solicitudPersona}</span>
+                            
+                            <div className="row">
+                                <div className="col-4">
+                                    <img className='imgUrl' src={item.imageUrl} alt="" />
+                                </div>
+                                <div className="col-8">
+                                    <h6 className="lead">Nombre: {item.nombrePersona}</h6>
+                                    <h6 className="lead">Apellido: {item.apellidoPersona}</h6>
+                                    <h6 className="lead">Celular: {item.celularPersona}</h6>
+                                    <h6 className="lead">Email: {item.emailPersona}</h6>
+                                    <h6 className="lead">Cargo: {item.cargoPersona}</h6>
+                                    <h6 className="lead">Despacho: {item.despachoPersona}</h6>
+                                    <h6 className="lead">Solicitud: {item.solicitudPersona}</h6>
+                                </div>
+                            </div>  
                                                           
                              <button 
                              className="btn btn-danger btn-sm float-end mx-2"
@@ -173,10 +189,8 @@ const Formulario = () => {
                          </li>
                      ))        
                 }
-                
             </ul>
             </div>
-
             <div className="col-4">
             <h4 className="text-center">
                 {
@@ -193,8 +207,7 @@ const Formulario = () => {
                 className="form-control mb-2" 
                 placeholder='Ingrese Apellido'
                 value={apellido}
-                onChange={(e)=>setApellido(e.target.value)}/>
-                
+                onChange={(e)=>setApellido(e.target.value)}/>                
                 <input type="text" 
                 className="form-control mb-2" 
                 placeholder='Ingrese Celular'
@@ -232,8 +245,7 @@ const Formulario = () => {
                             onClick={()=>cancelar()}>Cancelar</button>
                         </>
                     )
-                    :
-                    
+                    :                    
                     <button 
                     type='submit'
                     className='btn btn-primary btn-block'>
@@ -241,11 +253,7 @@ const Formulario = () => {
                     </button>
                 }
             </form>
-        </div> 
-
-                
-
-                
+        </div>    
         </div>
     </div>
   )
