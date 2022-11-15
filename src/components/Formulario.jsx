@@ -7,9 +7,10 @@ const Formulario = () => {
     const [apellido, setApellido] = useState('')
     const [celular, setCelular] = useState('')
     const [email, setEmail] = useState('')
-    const [cargo, setCargo] = useState('')
-    const [despacho, setDespacho] = useState('')
+    const [direccion, setDireccion] = useState('')
+    const [ciudad, setCiudad] = useState('')
     const [solicitud, setSolicitud] = useState('')
+    const [estado, setEstado] = useState('')
     const [listaTiquet, setlistaTiquet] = useState([])
     const [modoEdicion, setModoEdicion] = useState(false)
     const [id, setId] = useState('')
@@ -57,25 +58,27 @@ const Formulario = () => {
                 apellidoPersona: apellido,
                 celularPersona: celular,
                 emailPersona: email,
-                cargoPersona: cargo,
-                despachoPersona: despacho,
+                direccionPersona: direccion,
+                ciudadPersona: ciudad,
                 solicitudPersona: solicitud,
+                estadoPersona: estado,
                 //agregar mas campo
                 imageUrl
             })
             setlistaTiquet([
                 ...listaTiquet,
-                {nombrePersona:nombre, apellidoPersona: apellido, celularPersona: celular, emailPersona: email, cargoPersona: cargo, despachoPersona: despacho,
-                    solicitudPersona: solicitud, id:data.id, imageUrl}
+                {nombrePersona:nombre, apellidoPersona: apellido, celularPersona: celular, emailPersona: email, direccionPersona: direccion, ciudadPersona: ciudad,
+                    solicitudPersona: solicitud, id:data.id, estadoPersona: estado, imageUrl}
             ])
 
             setNombre('')
             setApellido('')
             setCelular('')
             setEmail('')
-            setCargo('')
-            setDespacho('')
+            setDireccion('')
+            setCiudad('')
             setSolicitud('')
+            setEstado('')
 
         }catch(error){
             console.log(error)
@@ -93,16 +96,17 @@ const Formulario = () => {
                 apellidoPersona: apellido,
                 celularPersona: celular,
                 emailPersona: email,
-                cargoPersona: cargo,
-                despachoPersona: despacho,
+                direccionPersona: direccion,
+                ciudadPersona: ciudad,
                 solicitudPersona: solicitud,
+                estadoPersona: estado,
                 imageUrl2
                 
             })
             
 
             const nuevoArray = listaTiquet.map(
-                item => item.id === id ? {id: id, nombrePersona:nombre, apellidoPersona: apellido, celularPersona: celular, emailPersona: email, cargoPersona: cargo, despachoPersona: despacho,
+                item => item.id === id ? {id: id, nombrePersona:nombre, apellidoPersona: apellido, celularPersona: celular, emailPersona: email, direccionPersona: direccion, ciudadPersona: ciudad,
                     solicitudPersona: solicitud, imageUrl2
                 //mas iten
                 } : item
@@ -113,9 +117,10 @@ const Formulario = () => {
             setApellido('')
             setCelular('')
             setEmail('')
-            setCargo('')
-            setDespacho('')
+            setDireccion('')
+            setCiudad('')
             setSolicitud('')
+            setEstado('')
             setId('')
             setModoEdicion(false)
 
@@ -129,9 +134,10 @@ const Formulario = () => {
         setApellido(item.apellidoPersona)
         setCelular(item.celularPersona)
         setEmail(item.emailPersona)
-        setCargo(item.cargoPersona)
-        setDespacho(item.despachoPersona)
+        setDireccion(item.direccionPersona)
+        setCiudad(item.ciudadPersona)
         setSolicitud(item.solicitudPersona)
+        setEstado(item.estadoPersona)
         setId(item.id)
         setModoEdicion(true)
     }
@@ -142,9 +148,10 @@ const Formulario = () => {
         setApellido('')
         setCelular('')
         setEmail('')
-        setCargo('')
-        setDespacho('')
+        setDireccion('')
+        setCiudad('')
         setSolicitud('')
+        setEstado('')
         setId('')
     }
 
@@ -157,8 +164,8 @@ const Formulario = () => {
         <hr/>
         <div className="row">
             <div className="col-8">
-                <h2 className="text-center">MESA DE AYUDA</h2>
-                <h4 className="text-center">Solicitud de Tiquet</h4>
+                <h2 className="text-center">Portal de Gestion</h2>
+                <h4 className="text-center">Gestion de Tikect</h4>
                 <ul className="list-group">
                 {
                      listaTiquet.map(item => (
@@ -174,9 +181,11 @@ const Formulario = () => {
                                     <h6 className="lead">Apellido: {item.apellidoPersona}</h6>
                                     <h6 className="lead">Celular: {item.celularPersona}</h6>
                                     <h6 className="lead">Email: {item.emailPersona}</h6>
-                                    <h6 className="lead">Cargo: {item.cargoPersona}</h6>
-                                    <h6 className="lead">Despacho: {item.despachoPersona}</h6>
+                                    <h6 className="lead">Direccion: {item.direccionPersona}</h6>
+                                    <h6 className="lead">Ciudad: {item.ciudadPersona}</h6>
                                     <h6 className="lead">Solicitud: {item.solicitudPersona}</h6>
+                                    <h6 className='lead'>Estado: {item.estadoPersona}</h6>
+                                    <h6>Tecnico Asignado: -----------------------</h6>
                                 </div>
                             </div>  
                                                           
@@ -220,19 +229,20 @@ const Formulario = () => {
                 onChange={(e)=>setEmail(e.target.value)}/>
                 <input type="text" 
                 className="form-control mb-2" 
-                placeholder='Ingrese Cargo'
-                value={cargo}
-                onChange={(e)=>setCargo(e.target.value)}/>
+                placeholder='Ingrese Direccion'
+                value={direccion}
+                onChange={(e)=>setDireccion(e.target.value)}/>
                 <input type="text" 
                 className="form-control mb-2" 
-                placeholder='Ingrese Despacho'
-                value={despacho}
-                onChange={(e)=>setDespacho(e.target.value)}/>
+                placeholder='Ingrese Ciudad'
+                value={ciudad}
+                onChange={(e)=>setCiudad(e.target.value)}/>
                 <input type="text" 
                 className="form-control mb-2" 
                 placeholder='Ingrese Solicitud'
                 value={solicitud}
                 onChange={(e)=>setSolicitud(e.target.value)}/>
+
                 {
                     modoEdicion ?
                     (
